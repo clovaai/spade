@@ -1,0 +1,174 @@
+verbose: true
+raw_data_input_type: type1
+data_paths:
+  dev: receipt_ind_cord_v0.1/dev/dev_type1.jsonl
+  op_dev: receipt_ind_cord_v0.1/dev/op_dev_type1.jsonl
+  op_test: receipt_ind_cord_v0.1/test/op_test_type1.jsonl
+  test: receipt_ind_cord_v0.1/test/test_type1.jsonl
+  train: receipt_ind_cord_v0.1/train/train_type1.jsonl
+dist_norm: img_diagonal
+infer_param:
+  allow_small_edit_distance: true
+  refine_parse: true
+  unwanted_fields:
+    -
+method_for_token_xy_generation: equal_division
+model_param:
+  input_embedding_components:
+    - base
+  #    - seqPos
+  #    - absPos
+  #    - charSize/n_
+  #    - vertical
+  bert_info_comb_type: base
+  decoder_hidden_size: 100
+  decoder_type: spade
+  encoder_backbone_is_pretrained: true
+  encoder_backbone_name: bert-base-multilingual-cased
+  encoder_backbone_tweak_tag: org
+  encoder_config_name: bert-base-multilingual-cased-5layers
+  encoder_type_name: spade
+  encoder_layer_ids_used_in_decoder:
+    - -1
+  #  examples_of_inffering_method: force_single_tail_node, force_single_tail_node_but_allow_multiple_seeds,  no_constraint
+  #  examples_of_parse_gen_method: multiple_beam, single_beam
+  field_representers:
+    - menu.nm
+    - sub_total.subtotal_price
+    - total.total_price
+    - void_menu.nm
+    - void_total.total_price
+  fields:
+    - menu.cnt
+    - menu.discountprice
+    - menu.itemsubtotal
+    - menu.nm
+    - menu.price
+    - menu.sub_cnt
+    - menu.sub_nm
+    - menu.sub_price
+    - menu.unitprice
+    - menu.sub_num
+    - menu.discountprice
+    - menu.num
+    - menu.sub_discountprice
+    - menu.sub_etc
+    - menu.etc
+    - menu.vatyn
+    - menu.itemsubtotal
+    - menu.sub_unitprice
+    - sub_total.discount_price
+    - sub_total.service_price
+    - sub_total.subtotal_price
+    - sub_total.tax_price
+    - sub_total.tax_and_service
+    - sub_total.etc
+    - sub_total.othersvc_price
+    - total.total_price
+    - total.menuqty_cnt
+    - total.total_etc
+    - total.emoneyprice
+    - total.menutype_cnt
+    - total.cashprice
+    - total.changeprice
+    - total.creditcardprice
+    - void_menu.nm
+    - void_menu.cnt
+    - void_menu.price
+    - void_menu.unitprice
+    - void_total.total_price
+    - void_total.subtotal_price
+    - void_total.tax_price
+    - void_total.etc
+
+  gt_parse_gen_method: single_beam
+  include_second_order_relations: false
+  inferring_method:
+    - force_single_tail_node_but_allow_multiple_seeds
+    - no_constraint
+  input_split_overlap_len: 256
+  l_max_gen_of_each_parse: 20
+  max_input_len: 512
+  max_info_depth: 1
+  model_name: RelationTagging
+  n_angle_unit: 60
+  n_char_unit: 5
+  n_dist_unit: 120
+  n_relation_type: 2
+  no_rel_attention: false
+  omit_angle_cal: false
+  parse_gen_method: single_beam
+  precision: 16
+  pre_layer_norm: true
+  task: receipt_v1
+  task_lan: ind
+  token_lv_boxing: true
+  trainable_rel_emb: false
+  use_cos_emb: false
+  vi_params:
+    do_gp:
+      - true
+      - true
+    do_sb:
+      - true
+      - true
+    n_vi_iter: 3
+  weights:
+    trained: false
+    path: model/saved/###
+toy_data: false
+toy_size: 4
+train_param:
+  accelerator: ddp
+  accumulate_grad_batches: 2
+  augment_coord: true
+  augment_data: true
+  batch_size: 2
+  batch_size_for_test: 2
+  coord_aug_params_keys: '[n_min, n_max, amp_min, amp_max, angle_min, angle_max],  [0,
+    2, -15, 15, -10, 10]'
+  data_augmentation_refresh_interval: 2
+  gradient_clip_val: 0
+  gradient_clip_algorithm: value
+  initial_coord_aug_params:
+    - - 0
+      - 4
+      - 0
+      - 35
+    - - 0
+      - 1.5
+      - 0
+      - 25
+    - - -10
+      - 10
+  initial_token_aug_params:
+    - 0.033
+    - 0.033
+    - 0
+    - 0.033
+    - 2
+  cross_entropy_loss_weight:
+    - 0.1
+    - 1.0
+  limit_train_batches: 1.0
+  limit_val_batches: 1.0
+  lr_scheduler_type: warmup_constant
+  lr_scheduler_param:
+    warmup_constant:
+      lr_default: 0.00007
+      lr_enc: 0.00007
+      lr_dec: 0.0007
+      lr_max: 0.0007
+      num_warmup_steps: 30
+  max_epochs: 10000
+  multi_gpu: true
+  n_cpus: 4
+  optimizer_type: adam
+  save_epoch_interval: 500
+  skip_long: true
+  token_aug_params_keys: '[p_del, p_subs, p_insert, p_tail_insert, n_max_insert],  [0.033,
+    0.033, 0, 0.033, 2]'
+  unique_token_pool: false
+  val_check_interval: 1.0
+  validation_metric: f1
+

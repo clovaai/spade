@@ -1,0 +1,131 @@
+verbose: true
+raw_data_input_type: type1
+data_paths:
+  dev: funsd/test/test_type1.jsonl
+  op_dev: null
+  op_test: null
+  test: funsd/test/test_type1.jsonl
+  train: funsd/train/train_type1.jsonl
+dist_norm: img_diagonal
+infer_param:
+  allow_small_edit_distance: false
+  refine_parse: false
+  unwanted_fields:
+    -
+method_for_token_xy_generation: equal_division
+model_param:
+  input_embedding_components:
+    - base
+  #    - seqPos
+  #    - absPos
+  #    - charSize/n_
+  #    - vertical
+  bert_info_comb_type: base
+  decoder_hidden_size: 100
+  decoder_type: spade
+  encoder_backbone_is_pretrained: true
+  encoder_backbone_name: bert-base-multilingual-cased
+  encoder_backbone_tweak_tag: org
+  encoder_config_name: bert-base-multilingual-cased-5layers
+  encoder_type_name: spade
+  encoder_layer_ids_used_in_decoder:
+    - -1
+  field_representers:
+    - qa.question
+    - header.header
+    - other.other
+  fields:
+    - qa.question
+    - qa.answer
+    - header.header
+    - other.other
+  include_second_order_relations: false
+  inferring_method:
+#    - force_single_tail_node_but_allow_multiple_seeds
+#    - no_constraint
+      - tca_rel_s
+      - tca_rel_g
+  input_split_overlap_len: 256
+  l_max_gen_of_each_parse: 10
+  max_info_depth: 2
+  max_input_len: 512
+  model_name: RelationTagging
+  n_angle_unit: 60
+  n_char_unit: 5
+  n_dist_unit: 240
+  n_relation_type: 2
+  no_rel_attention: false
+  omit_angle_cal: true
+  precision: 16
+  pre_layer_norm: true
+  task: funsd
+  task_lan: eng
+  token_lv_boxing: false
+  trainable_rel_emb: false
+  use_cos_emb: false
+  vi_params:
+    do_gp:
+      - true
+      - true
+    do_sb:
+      - true
+      - true
+    n_vi_iter: 3
+  weights:
+    trained: true
+    path: model/trained/funsd/5layers/model.pt
+toy_data: false
+toy_size: 4
+train_param:
+  accelerator: ddp
+  accumulate_grad_batches: 4
+  augment_coord: true
+  augment_data: true
+  batch_size: 1
+  batch_size_for_test: 2
+  coord_aug_params_keys: '[n_min, n_max, amp_min, amp_max, angle_min, angle_max],  [0,
+    2, -15, 15, -10, 10]'
+  data_augmentation_refresh_interval: 2
+  fname_model_local_save: _temp_config_1-1
+  gradient_clip_val: 1.0
+  gradient_clip_algorithm: value
+  initial_coord_aug_params:
+    - - 0
+      - 4
+      - 0
+      - 35
+    - - 0
+      - 1.5
+      - 0
+      - 25
+    - - -10
+      - 10
+  initial_token_aug_params:
+    - 0.033
+    - 0.033
+    - 0
+    - 0.033
+    - 2
+  cross_entropy_loss_weight:
+    - 0.1
+    - 1.0
+  limit_train_batches: 1.0
+  limit_val_batches: 1.0
+  lr_scheduler_type: warmup_constant
+  lr_scheduler_param:
+    warmup_constant:
+      lr_default: 0.00004
+      lr_enc: 0.00004
+      lr_dec: 0.0004
+      lr_max: 0.0004
+      num_warmup_steps: 30
+  max_epochs: 5000
+  n_cpus: 0
+  optimizer_type: adam
+  save_epoch_interval: 100
+  skip_long: false
+  token_aug_params_keys: '[p_del, p_subs, p_insert, p_tail_insert, n_max_insert],  [0.033,
+    0.033, 0, 0.033, 2]'
+  unique_token_pool: false
+  val_check_interval: 1.0
+  validation_metric: f1_edge_avg
