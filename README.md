@@ -21,7 +21,7 @@
 1. `conda create --name spade_open  python==3.7.10`
 2. `git clone [this-repo]`
 3. `pip install -r requirements`
-4. Download  `data.tar.gz` from [release](). The file also include the small model trained
+4. Download  `data.tar.gz` from [here](https://drive.google.com/file/d/1863IJuyxFh82wTfxrUQ-Jk5NTTbHYsfK/view?usp=sharing). The file also include the small model trained
    on [CORD](https://github.com/clovaai/cord) dataset.
 
   ```
@@ -76,7 +76,7 @@ python download_pretrained_models.py
     - `img_sz`: an image size
     - `img_feature`: an image feature. Currently not used.
     - `img_url`: an image url.
-- In the uploaded [data.tar.gz](), you can also find `type0` data where the data is organized reflecting their original
+- In the uploaded [data.tar.gz](https://drive.google.com/file/d/1863IJuyxFh82wTfxrUQ-Jk5NTTbHYsfK/view?usp=sharing), you can also find `type0` data where the data is organized reflecting their original
   format. In this case, `raw_data_input_type` should be set to `type0` and `label` is generated while loading the data.
 
 ### Test output
