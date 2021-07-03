@@ -18,10 +18,11 @@
 - The code is tested on `NVIDIA-P40`,
   `NAME="Ubuntu", VERSION="16.04.6 LTS (Xenial Xerus)"`
 
-1. `conda create --name spade_open  python==3.7.10`
-2. `git clone [this-repo]`
-3. `pip install -r requirements`
-4. Download  `data.tar.gz` from [here](https://drive.google.com/file/d/1863IJuyxFh82wTfxrUQ-Jk5NTTbHYsfK/view?usp=sharing). The file also include the small model trained
+1. `conda create --name spade  python==3.7.10`
+2. `conda activate spade`
+3. `git clone [this-repo]`
+4. `pip install -r requirements`
+5. Download  `data.tar.gz` from [here](https://drive.google.com/file/d/1863IJuyxFh82wTfxrUQ-Jk5NTTbHYsfK/view?usp=sharing). The file also include the small model trained
    on [CORD](https://github.com/clovaai/cord) dataset.
 
   ```
