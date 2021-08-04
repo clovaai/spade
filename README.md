@@ -4,7 +4,7 @@
 
 - This repository contains the source code of our recent publication
   [Spatial Dependency Parsing for Semi-Structured Document Information Extraction](https://arxiv.org/abs/2005.00642).
-  The paper is accepted at Findins of ACL 2021.
+  The paper is accepted at Findings of ACL 2021.
 
 - SPADE♠️ (SPAtial DEpendency parsing) accepts 2D text (text segments and their xy-coordinates).
 - SPADE♠ generates the graph that represents semi-structured documents (such as receipts, name cards, invoices).
