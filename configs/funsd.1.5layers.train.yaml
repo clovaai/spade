@@ -58,7 +58,7 @@ model_param:
   n_relation_type: 2
   no_rel_attention: false
   omit_angle_cal: true
-  precision: 16
+  precision: 32
   pre_layer_norm: true
   task: funsd
   task_lan: eng
@@ -76,7 +76,7 @@ model_param:
   weights:
     trained: false
     path: model/trained/###
-toy_data: true
+toy_data: false
 toy_size: 4
 train_param:
   accelerator: ddp
